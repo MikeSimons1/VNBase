@@ -62,9 +62,7 @@ extension UINavigationBar {
 			self.standardAppearance = appearance
 			self.scrollEdgeAppearance = appearance
 		} else {
-			if #available(iOS 11.0, *) {
-				self.largeTitleTextAttributes = style.largeTitleTextAttributes
-			}
+            self.largeTitleTextAttributes = style.largeTitleTextAttributes
 			self.titleTextAttributes = style.titleTextAttributes
 			self.setBackgroundImage(style.backgroundImage, for: .default)
 			self.shadowImage = style.shadowImage

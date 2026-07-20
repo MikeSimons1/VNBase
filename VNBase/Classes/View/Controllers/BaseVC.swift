@@ -62,7 +62,8 @@ open class BaseVC<TViewModel: BaseViewControllerVM> : UIViewController, ViewMode
 
 		assert(self.supportedInterfaceOrientations.contains(self.preferredInterfaceOrientationForPresentation.mask))
 
-		if !self.supportedInterfaceOrientations.contains(UIApplication.shared.statusBarOrientation.mask) {
+		if let currentInterfaceOrientationMask = self.currentInterfaceOrientationMask,
+		   !self.supportedInterfaceOrientations.contains(currentInterfaceOrientationMask) {
 			UIDevice.current.rotate(
 				to: self.supportedInterfaceOrientations,
 				preferredInterfaceOrientation: self.preferredInterfaceOrientationForPresentation
@@ -116,6 +117,14 @@ open class BaseVC<TViewModel: BaseViewControllerVM> : UIViewController, ViewMode
 	open func viewModelChanged() {}
 
 	// MARK: - Private
+	private var currentInterfaceOrientationMask: UIInterfaceOrientationMask? {
+		if #available(iOS 13.0, *) {
+			return self.view.window?.windowScene?.interfaceOrientation.mask
+		} else {
+			return UIApplication.shared.statusBarOrientation.mask
+		}
+	}
+
 	@objc private func onReload() {
 		self.viewModel.reload()
 	}
