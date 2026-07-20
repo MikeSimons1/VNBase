@@ -25,7 +25,7 @@ open class BasePushHandler: NSObject {
 		}
 	}
 
-	open func shouldShowMessage(for notification: UNNotification) -> UNNotificationPresentationOptions { [.alert] }
+	open func shouldShowMessage(for notification: UNNotification) -> UNNotificationPresentationOptions { [.banner, .list] }
 
 	public func registerForRemote() {
 		UIApplication.shared.registerForRemoteNotifications()
