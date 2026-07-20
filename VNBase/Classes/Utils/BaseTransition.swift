@@ -23,8 +23,6 @@ open class BaseTransition: NSObject, UIViewControllerAnimatedTransitioning {
 			return
 		}
 
-		UIApplication.shared.beginIgnoringInteractionEvents()
-
 		let containerView = transitionContext.containerView
 		fromViewController.view.frame = transitionContext.initialFrame(for: fromViewController)
 		fromViewController.view.layoutIfNeeded()
@@ -35,10 +33,6 @@ open class BaseTransition: NSObject, UIViewControllerAnimatedTransitioning {
 		}
 		toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
 		toViewController.view.layoutIfNeeded()
-	}
-
-	open func animationEnded(_ transitionCompleted: Bool) {
-		UIApplication.shared.endIgnoringInteractionEvents()
 	}
 
 }
