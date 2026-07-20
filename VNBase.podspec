@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'VNBase'
-  s.version          = '0.4.62'
+  s.version          = '0.4.63'
   s.summary          = 'Simple MVVM helper'
   s.swift_version 	 = '5.0'
   s.description      = <<-DESC
@@ -21,7 +21,7 @@ TODO: I should add some description later =)
   s.source           = { :git => 'https://github.com/teanet/VNBase.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/teanet'
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '15.0'
   s.ios.source_files = 'VNBase/Classes/**/*'
   # s.resource_bundles = {
   #   'VNBase' => ['VNBase/Assets/*.png']
