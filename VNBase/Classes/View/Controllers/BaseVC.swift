@@ -60,13 +60,21 @@ open class BaseVC<TViewModel: BaseViewControllerVM> : UIViewController, ViewMode
 			self.navigationController?.setNavigationBarHidden(self.navigationBarStyle == nil, animated: animated)
 		}
 
-		assert(self.supportedInterfaceOrientations.contains(self.preferredInterfaceOrientationForPresentation.mask))
+        let preferredOrientation = [
+            self.preferredInterfaceOrientationForPresentation,
+            .portrait,
+            .landscapeLeft,
+            .landscapeRight,
+            .portraitUpsideDown
+        ].first { self.supportedInterfaceOrientations.contains($0.mask) }
+
+        guard let preferredOrientation else { return }
 
 		if let currentInterfaceOrientationMask = self.currentInterfaceOrientationMask,
 		   !self.supportedInterfaceOrientations.contains(currentInterfaceOrientationMask) {
 			UIDevice.current.rotate(
 				to: self.supportedInterfaceOrientations,
-				preferredInterfaceOrientation: self.preferredInterfaceOrientationForPresentation
+                preferredInterfaceOrientation: preferredOrientation
 			)
 			UIViewController.attemptRotationToDeviceOrientation()
 		}
